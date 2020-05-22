@@ -9,16 +9,51 @@ namespace Record_Pro
 {
     class UserInfo
     {
+        [JsonProperty("token")]
+        public string Token { get; set; }
+
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
         [JsonProperty("password")]
-        private string Password{get;set;}
+        public string Password{get;set;}
+
+        [JsonProperty("name")]
+        public string Username { get; set; }
+
+        //public UserInfo(string password,string username)
+        //{
+        //    this.Id = 0;
+        //    this.Password = password;
+        //    this.Username = username;
+        //    this.Token = "";
+        //}
+        //public UserInfo(string password, string username,int id,string token)
+        //{
+        //    this.Id = id;
+        //    this.Password = password;
+        //    this.Username = username;
+        //    this.Token = token;
+        //}
+
+    }
+    class UserBase
+    {
+        [JsonProperty("password")]
+        public string Password { get; set; }
 
         [JsonProperty("username")]
-        private string Username { get; set; }
-
-        public UserInfo(string password,string username)
+        public string Username { get; set; }
+        public UserBase()
         {
+
+        }
+        public UserBase(string password, string username)
+        {
+            
             this.Password = password;
             this.Username = username;
+            
         }
     }
 }

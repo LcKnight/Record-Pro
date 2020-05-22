@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.Username = new System.Windows.Forms.TextBox();
             this.Password = new System.Windows.Forms.TextBox();
@@ -56,6 +56,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(337, 557);
             this.panel1.TabIndex = 0;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(49, 286);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(215, 30);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Smother Quicker\r\n             Save in Cloud";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(34, 22);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(87, 15);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Record Pro";
             // 
             // pictureBox1
             // 
@@ -78,15 +96,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "x";
             this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(34, 22);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Record Pro";
             // 
             // label3
             // 
@@ -115,15 +124,6 @@
             this.label5.TabIndex = 4;
             this.label5.Text = "Agree the Items";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(49, 286);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(215, 30);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Smother Quicker\r\n             Save in Cloud";
-            // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
@@ -148,6 +148,7 @@
             this.Password.Name = "Password";
             this.Password.Size = new System.Drawing.Size(209, 18);
             this.Password.TabIndex = 7;
+            this.Password.UseSystemPasswordChar = true;
             // 
             // SignIn
             // 
