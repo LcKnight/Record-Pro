@@ -14,6 +14,7 @@ namespace Record_Pro
         [STAThread]
         static void Main()
         {
+            Api api = new Api();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new MainPage());

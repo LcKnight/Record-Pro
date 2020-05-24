@@ -31,22 +31,26 @@ namespace Record_Pro
 
         private void SignIn_Click(object sender, EventArgs e)
         {
-            
+            user = new UserBase(Username.Text, Password.Text);
+            bool a=api.SignIn(user);
+            User form1 = new User(api.Token);
+            this.Hide();
+            form1.Show();
+            //MessageBox.Show(api.Token);
         }
 
-        async private void SignUp_Click(object sender, EventArgs e)
+         private void SignUp_Click(object sender, EventArgs e)
         {
 
             user = new UserBase(Username.Text, Password.Text);
-            string json = JsonConvert.SerializeObject(user);
-            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
-            if(await api.SignUpUserAsync(content))
+            string result=api.SignUpUserAsync(user);
+            if(result=="Created")
             {
-                MessageBox.Show("Successful");
+                MessageBox.Show("Created");
             }
-            else
+            else if(result=="Conflict")
             {
-                MessageBox.Show("dead");
+                MessageBox.Show("Conflict");
             }
         }
     }

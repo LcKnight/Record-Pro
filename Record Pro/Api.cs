@@ -10,28 +10,42 @@ namespace Record_Pro
 {
     class Api
     {
-        public const string baseurl = "http://yuh.ziqiang.net.cn/api/";
+        public enum StatusCode
+        {
+            Created,                  //表明创建成功
+            Conflict,                 //表明创建重复
+            OK,                       //200
+        }
+        public const string baseurl = "https://yuh.ziqiang.net.cn/";
         public const string APIKey = "INSERT_API_KEY_HERE";
         //public string jsonRaw;
         private static HttpClient HttpClient;
         private static Regex rx;
-        public Api()
+        public string Token;
+        static Api()
         {
             HttpClient = new HttpClient();
             string pattern;
-            pattern = @"token"":""<token>""}";
+            pattern = @"token"":""(.*)""}";
             rx = new Regex(pattern, RegexOptions.Compiled);
+            
         }
         
-        public async Task<bool> SignUpUserAsync(HttpContent content)
+        public string SignUpUserAsync(UserBase user)
         {
-            HttpResponseMessage x = await HttpClient.PostAsync(baseurl + "/register", content);
-            if(x.StatusCode.Equals(409))
+            //HttpResponseMessage x = await HttpClient.PostAsync(baseurl + "register?"+user, content);
+            HttpContent content = new StringContent(" ");
+            var x = HttpClient.PostAsync(baseurl + "register?"+user.ToString(), content).Result;
+            return x.StatusCode.ToString();
+        }
+        public bool SignIn(UserBase user)
+        {
+            HttpContent content = new StringContent(" ");
+            var x = HttpClient.PostAsync(baseurl + "login?" + user.ToString(), content).Result;
+            if (x.StatusCode.ToString() == "OK")
             {
-                return false;
-            }
-            else if(x.StatusCode.Equals(200))
-            {
+                Token = rx.Match(x.Content.ReadAsStringAsync().Result).Groups[1].Value;
+;
                 return true;
             }
             else
@@ -39,26 +53,13 @@ namespace Record_Pro
                 return false;
             }
         }
-        public async Task<string> SignIn(HttpContent content)
-        {
-            HttpResponseMessage x = await HttpClient.PostAsync(baseurl + "/login?", content);
-            if(x.IsSuccessStatusCode)
-            {
-                Match a = rx.Match(x.ToString());
-                return a.Groups["token"].Value;
-            }
-            else
-            {
-                return null;
-            }
-        }
-        public async Task<List<UserBills>> GetUserBillsAsync(string token,int days)
+        public List<UserBills> GetUserBillsAsync(string token,int days)
         {
             List<UserBills> userbills = null;
             try
             {
-                HttpResponseMessage x = await HttpClient.GetAsync("https://yuh.ziqiang.net.cn/api/UserBills?token=" + token + "&days=" + days);
-                string tempdata = await x.Content.ReadAsStringAsync();
+                HttpResponseMessage x = HttpClient.GetAsync("https://yuh.ziqiang.net.cn/api/UserBills?token=" + token + "&days=" + days).Result;
+                string tempdata = x.Content.ReadAsStringAsync().Result;
                 userbills = JsonConvert.DeserializeObject<List<UserBills>>(tempdata);
             }
             catch(Exception e)
@@ -69,41 +70,29 @@ namespace Record_Pro
             return userbills;
 
         }
-        public async Task<bool> PostUserBillsAsync(HttpContent content)
+        public string PostUserBillsAsync(PostBill postbill)
         {
-            HttpResponseMessage x = await HttpClient.PostAsync(baseurl + "/UserBills?", content);
-            if (x.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+
+            string json = JsonConvert.SerializeObject(postbill);
+            HttpContent content = new StringContent(json);
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            HttpResponseMessage x = HttpClient.PostAsync(baseurl + "/api/UserBills?", content).Result;
+            return x.StatusCode.ToString();
         }
-        public async Task<bool> DeleteUserBillsAsync(string token,int id)
+        public string DeleteUserBillsAsync(string token,int id)
         {
-            HttpResponseMessage x = await HttpClient.DeleteAsync(baseurl + "/UserBills?" + "id=" + id + "&token=" + token);
-            if (x.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            HttpResponseMessage x = HttpClient.DeleteAsync(baseurl + "/api/UserBills?" + "id=" + id + "&token=" + token).Result;
+            return x.StatusCode.ToString();
+
         }
-        public async Task<bool> PutUserBillsAsync(string token, int id, HttpContent content)
+        public string PutUserBillsAsync(string token, int id, PostBill postbill)
         {
-            HttpResponseMessage x = await HttpClient.PutAsync(baseurl + "/UserBills?" + "id=" + id + "&token=" + token, content);
-            if (x.IsSuccessStatusCode)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            
+            string json = JsonConvert.SerializeObject(postbill);
+            HttpContent content = new StringContent(json);
+            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+            HttpResponseMessage x = HttpClient.PutAsync(baseurl + "/api/UserBills?" + "id=" + id + "&token=" + token, content).Result;
+            return x.StatusCode.ToString(); 
         }
 
 

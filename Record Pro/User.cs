@@ -12,9 +12,18 @@ namespace Record_Pro
 {
     public partial class User : Form
     {
-        public User()
+        private Api api;
+        private List<UserBills> userbills;
+        public User(string token)
         {
             InitializeComponent();
+            api = new Api();
+            api.Token = token;
+        }
+
+        private void GetList_Click(object sender, EventArgs e)
+        {
+            userbills = api.GetUserBillsAsync(api.Token, 5);
         }
     }
 }

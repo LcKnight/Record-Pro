@@ -125,3 +125,4 @@ C:\Users\81981\Desktop\Record Pro\Record-Pro\Record Pro\obj\Debug\Record Pro.csp
 C:\Users\81981\Desktop\Record Pro\Record-Pro\Record Pro\obj\Debug\Record Pro.csproj.CopyComplete
 C:\Users\81981\Desktop\Record Pro\Record-Pro\Record Pro\obj\Debug\Record Pro.exe
 C:\Users\81981\Desktop\Record Pro\Record-Pro\Record Pro\obj\Debug\Record Pro.pdb
+C:\Users\81981\Desktop\Record Pro\Record-Pro\Record Pro\obj\Debug\Record_Pro.User.resources

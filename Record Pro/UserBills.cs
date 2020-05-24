@@ -37,9 +37,9 @@ namespace Record_Pro
     {
         [JsonProperty("id")]
         public int Id { get; set; }
-
+        
         [JsonProperty("category")]
-        public string category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("type")]
         public bool Type { get; set; }
@@ -55,11 +55,15 @@ namespace Record_Pro
 
         [JsonProperty("userid")]
         public int UserId { get; set; }
+        public override string ToString()
+        {
+            return Date.ToString();
+        }
     }
     class PostBill
     {
         [JsonProperty("category")]
-        public string category { get; set; }
+        public string Category { get; set; }
 
         [JsonProperty("type")]
         public bool Type { get; set; }
@@ -75,6 +79,15 @@ namespace Record_Pro
 
         [JsonProperty("token")]
         public string Token { get; set; }
+        public PostBill(string category,bool type,int amount,string remark,DateTime date,string token)
+        {
+            Category = category;
+            Type = type;
+            Amount = amount;
+            Remark = remark;
+            Date = date;
+            Token = token;
+        }
     }
     
 }

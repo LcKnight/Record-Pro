@@ -48,7 +48,11 @@ namespace Record_Pro
         {
 
         }
-        public UserBase(string password, string username)
+        public override string ToString()
+        {
+            return "username=" + this.Username + "&" + "password=" + this.Password;
+        }
+        public UserBase(string username, string password)
         {
             
             this.Password = password;

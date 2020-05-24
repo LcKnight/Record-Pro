@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.GetList = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // GetList
+            // 
+            this.GetList.Location = new System.Drawing.Point(78, 89);
+            this.GetList.Name = "GetList";
+            this.GetList.Size = new System.Drawing.Size(75, 23);
+            this.GetList.TabIndex = 0;
+            this.GetList.Text = "button1";
+            this.GetList.UseVisualStyleBackColor = true;
+            this.GetList.Click += new System.EventHandler(this.GetList_Click);
+            // 
+            // User
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.GetList);
+            this.Name = "User";
             this.Text = "User";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button GetList;
     }
 }
