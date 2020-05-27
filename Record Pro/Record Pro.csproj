@@ -82,6 +82,7 @@
     <Compile Include="Api.cs" />
     <Compile Include="UserBillDTO.cs" />
     <Compile Include="UserBills.cs" />
+    <Compile Include="UserFaces.cs" />
     <Compile Include="UserInfo.cs" />
     <Compile Include="MainPage.cs">
       <SubType>Form</SubType>
@@ -97,6 +98,7 @@
     <Compile Include="User.Designer.cs">
       <DependentUpon>User.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserNotes.cs" />
     <Compile Include="WeatherForecast.cs" />
     <EmbeddedResource Include="MainPage.resx">
       <DependentUpon>MainPage.cs</DependentUpon>
